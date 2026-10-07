@@ -1,0 +1,308 @@
+---
+const SHOP = 'Pratik Books & Stationers';
+const WA_NUM = '9779848421318';
+const MAPS = 'https://www.google.com/maps/search/?api=1&query=Pratik+Books+%26+Stationers+Kanchi+Bazar+Tikapur';
+const title = `${SHOP} | Stationery Shop in Tikapur`;
+const description = 'Pratik Books & Stationers in Kanchi Bazar, Tikapur offers books, school stationery, art supplies, office supplies, sports materials and more. Contact us directly through WhatsApp.';
+const canonical = Astro.site ? new URL('/', Astro.site).href : undefined;
+
+// WhatsApp deep link with a pre-filled message, built at compile time.
+const wa = (cat = '') =>
+  `https://wa.me/${WA_NUM}?text=${encodeURIComponent(
+    cat
+      ? `Hello ${SHOP},\nI am interested in your ${cat} category.\nPlease share available items and details.`
+      : `Hello ${SHOP},\nI visited your website and would like to know more about your available items.`,
+  )}`;
+
+// [symbol id, viewBox, aspect-ratio] — viewBox/ratio only for non-square art
+type Icon = [string, string?, number?];
+const cats: { name: string; desc: string; label: string; icons: Icon[] }[] = [
+  { name: 'Books', desc: 'School books, reference books, notebooks and more.', label: 'Stack of books and a notebook', icons: [['book'], ['notebook']] },
+  { name: 'Stationery', desc: 'Pens, pencils, markers, rulers, erasers and everyday essentials.', label: 'Pencil, eraser and paper clip', icons: [['pencil', '0 0 120 30', 4], ['eraser', '0 0 70 36', 2], ['clip', '0 0 40 90', 0.45]] },
+  { name: 'Art & Craft', desc: 'Colours, sketchbooks, brushes, paint and creative materials.', label: 'Paintbrush and star', icons: [['brush', '0 0 130 24', 5.4], ['star', '0 0 80 80']] },
+  { name: 'School Essentials', desc: 'Bags, geometry sets, notebooks, bottles and school-use items.', label: 'School bag and notebook', icons: [['bag'], ['notebook']] },
+  { name: 'Office Supplies', desc: 'Files, folders, staplers, printer paper and desk essentials.', label: 'Sticky note and paper clip', icons: [['sticky'], ['clip', '0 0 40 90', 0.45]] },
+  { name: 'Sports', desc: 'Football, badminton, shuttlecocks and school sports materials.', label: 'Football and shuttlecock', icons: [['ball'], ['shuttle', '0 0 60 90', 0.66]] },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Store',
+  name: SHOP,
+  description: 'Books, stationery, art supplies, office supplies and sports materials in Tikapur.',
+  ...(canonical && { url: canonical }),
+  telephone: ['+9779848421318', '+97791560311'],
+  address: { '@type': 'PostalAddress', streetAddress: 'Kanchi Bazar', addressLocality: 'Tikapur', addressRegion: 'Kailali', addressCountry: 'NP' },
+  areaServed: ['Tikapur', 'Kailali'],
+  sameAs: [`https://wa.me/${WA_NUM}`],
+};
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{title}</title>
+<meta name="description" content={description}>
+<meta name="keywords" content="stationery shop in Tikapur, books shop in Tikapur, book store Tikapur, school supplies Tikapur, office supplies Tikapur, art supplies Tikapur, sports materials Tikapur, stationery Kailali, books and stationery Kailali">
+{canonical && <link rel="canonical" href={canonical}>}
+{canonical && <meta property="og:url" content={canonical}>}
+<meta property="og:type" content="website">
+<meta property="og:title" content={title}>
+<meta property="og:description" content="Books, stationery, art supplies, office supplies and sports materials in Kanchi Bazar, Tikapur.">
+<meta property="og:locale" content="en_NP">
+<meta name="theme-color" content="#FFD84A">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="pencil" viewBox="0 0 120 30"><rect x="14" y="4" width="76" height="22" fill="#FFC928" stroke="#162033" stroke-width="2.5"/><path d="M30 4v22M46 4v22" stroke="#E0A800" stroke-width="2"/><path d="M90 4l26 11-26 11z" fill="#F3D9A4" stroke="#162033" stroke-width="2.5" stroke-linejoin="round"/><path d="M107 11l9 4-9 4z" fill="#162033"/><rect x="3" y="4" width="13" height="22" rx="3" fill="#F28B9B" stroke="#162033" stroke-width="2.5"/></symbol>
+<symbol id="ruler" viewBox="0 0 140 36"><rect x="2" y="2" width="136" height="32" rx="3" fill="#FFF1A8" stroke="#162033" stroke-width="2.5"/><path d="M14 2v12M28 2v8M42 2v12M56 2v8M70 2v12M84 2v8M98 2v12M112 2v8M126 2v12" stroke="#162033" stroke-width="2"/></symbol>
+<symbol id="clip" viewBox="0 0 40 90"><path d="M12 62V22a8 8 0 0116 0v50a12 12 0 01-24 0V30" transform="translate(8 4)" fill="none" stroke="#162033" stroke-width="3.5" stroke-linecap="round"/></symbol>
+<symbol id="eraser" viewBox="0 0 70 36"><rect x="2" y="2" width="66" height="32" rx="7" fill="#F9B8C4" stroke="#162033" stroke-width="2.5"/><rect x="2" y="2" width="26" height="32" rx="7" fill="#4C6FA8" stroke="#162033" stroke-width="2.5"/></symbol>
+<symbol id="sticky" viewBox="0 0 80 80"><path d="M4 4h72v52L56 76H4z" fill="#FFD84A" stroke="#162033" stroke-width="2.5" stroke-linejoin="round"/><path d="M56 76V56h20" fill="#E0A800" stroke="#162033" stroke-width="2.5" stroke-linejoin="round"/><path d="M16 24h46M16 38h34" stroke="#162033" stroke-width="2.5" stroke-linecap="round" opacity=".5"/></symbol>
+<symbol id="brush" viewBox="0 0 130 24"><rect x="4" y="8" width="84" height="8" rx="4" fill="#162033"/><rect x="84" y="6" width="16" height="12" fill="#C9CED8" stroke="#162033" stroke-width="2.5"/><path d="M100 6c18-2 28 4 28 6s-10 8-28 6z" fill="#E25C5C" stroke="#162033" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+<symbol id="book" viewBox="0 0 100 90"><rect x="6" y="56" width="88" height="26" rx="3" fill="#4C6FA8" stroke="#162033" stroke-width="2.5"/><rect x="14" y="30" width="76" height="26" rx="3" fill="#E25C5C" stroke="#162033" stroke-width="2.5"/><rect x="2" y="6" width="80" height="24" rx="3" fill="#FFC928" stroke="#162033" stroke-width="2.5"/><path d="M14 69h60M22 43h50M12 18h46" stroke="#162033" stroke-width="2.5" opacity=".45"/></symbol>
+<symbol id="notebook" viewBox="0 0 80 100"><rect x="6" y="4" width="68" height="92" rx="5" fill="#fff" stroke="#162033" stroke-width="2.5"/><rect x="6" y="4" width="68" height="30" rx="5" fill="#FFD84A" stroke="#162033" stroke-width="2.5"/><path d="M0 22h12M0 46h12M0 70h12" stroke="#162033" stroke-width="4" stroke-linecap="round"/><path d="M24 56h40M24 70h32" stroke="#162033" stroke-width="2.5" opacity=".4"/></symbol>
+<symbol id="ball" viewBox="0 0 80 80"><circle cx="40" cy="40" r="36" fill="#fff" stroke="#162033" stroke-width="2.5"/><path d="M40 24l15 11-6 17H31l-6-17z" fill="#162033"/><path d="M40 24V6M55 35l19-6M49 52l11 16M31 52L20 68M25 35L6 29" stroke="#162033" stroke-width="2.5"/></symbol>
+<symbol id="shuttle" viewBox="0 0 60 90"><path d="M22 36L6 6h48L38 36z" fill="#fff" stroke="#162033" stroke-width="2.5" stroke-linejoin="round"/><path d="M18 22h24M26 6l2 30M34 6l-2 30" stroke="#162033" stroke-width="1.8"/><path d="M20 36h20a10 10 0 010 26H20a10 10 0 010-26z" transform="translate(0 6) scale(1 .85)" fill="#FFC928" stroke="#162033" stroke-width="2.5"/></symbol>
+<symbol id="bag" viewBox="0 0 90 100"><path d="M26 22a19 19 0 0138 0" fill="none" stroke="#162033" stroke-width="4"/><rect x="8" y="22" width="74" height="72" rx="14" fill="#4C6FA8" stroke="#162033" stroke-width="2.5"/><path d="M8 52h74" stroke="#162033" stroke-width="2.5"/><rect x="32" y="46" width="26" height="14" rx="4" fill="#FFD84A" stroke="#162033" stroke-width="2.5"/></symbol>
+<symbol id="star" viewBox="0 0 30 30"><path d="M15 2l3.5 9.5L28 12l-7.5 6 2.5 10L15 22.5 7 28l2.5-10L2 12l9.5-.5z" fill="none" stroke="#162033" stroke-width="2" stroke-linejoin="round"/></symbol>
+</defs>
+</svg>
+
+<header>
+ <div class="bar">
+  <nav aria-label="Main"><a href="#home">Home</a><a href="#categories">Categories</a><a href="#about">About</a><a href="#visit">Visit</a><a href="#contact">Contact</a></nav>
+  <a class="brand" href="#home" aria-label={SHOP}><b>Pratik</b><span>BOOKS &amp; STATIONERS</span></a>
+  <a class="btn p hd-cta" href={wa()} target="_blank" rel="noopener">Order on WhatsApp <i>→</i></a>
+ </div>
+</header>
+
+<main>
+<section id="home">
+ <div class="fl m-hide" data-x="90" data-y="-120" data-r="25" style="left:3%;top:12%;width:150px;height:38px;rotate:-35deg"><svg><use href="#pencil"/></svg></div>
+ <div class="fl" data-x="-60" data-y="140" data-r="-30" style="right:5%;top:10%;width:150px;height:40px;rotate:20deg"><svg><use href="#ruler"/></svg></div>
+ <div class="fl t-hide" data-x="-50" data-y="-90" data-r="40" style="right:10%;bottom:12%;width:90px;height:90px"><svg><use href="#sticky"/></svg></div>
+ <div class="fl m-hide" data-x="40" data-y="-150" data-r="-50" style="left:6%;bottom:8%;width:46px;height:100px;rotate:15deg"><svg><use href="#clip"/></svg></div>
+ <div class="fl t-hide m-hide" data-x="-90" data-y="-60" data-r="80" style="right:34%;top:6%;width:76px;height:40px;rotate:10deg"><svg><use href="#eraser"/></svg></div>
+ <div class="fl" data-x="-30" data-y="-110" data-r="-20" style="right:4%;top:42%;width:90px;height:110px;rotate:12deg"><svg><use href="#notebook"/></svg></div>
+ <div class="fl t-hide m-hide" data-x="30" data-y="60" data-r="90" style="left:46%;bottom:6%;width:34px;height:34px"><svg><use href="#star"/></svg></div>
+ <div class="wrap">
+  <span class="hand hero-h" style="top:-34px;left:clamp(28px,8vw,110px)">Kanchi Bazar, Tikapur ↓</span>
+  <h1>Everything for a <em>Brighter Day<svg viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 12C60 3 120 17 200 9s150 6 197 1" fill="none" stroke="#FFC928" stroke-width="7" stroke-linecap="round"/></svg></em></h1>
+  <p class="lead">Books, stationery, art supplies, sports materials and more — all in one place in Tikapur.</p>
+  <div class="ctas">
+   <a class="btn p" href={wa()} target="_blank" rel="noopener">Order on WhatsApp <i>→</i></a>
+   <a class="btn s" href="#categories">Explore Categories <i>↓</i></a>
+  </div>
+ </div>
+</section>
+
+<section id="categories">
+ <div class="fl t-hide" data-x="-120" data-y="60" data-r="40" style="right:-20px;top:4%;width:180px;height:46px;rotate:-20deg"><svg><use href="#pencil"/></svg></div>
+ <div class="fl m-hide" data-x="110" data-y="-80" data-r="-40" style="left:-30px;top:44%;width:140px;height:38px;rotate:8deg"><svg><use href="#ruler"/></svg></div>
+ <div class="fl m-hide" data-x="-70" data-y="-120" data-r="35" style="right:2%;top:46%;width:120px;height:26px;rotate:-25deg"><svg><use href="#brush"/></svg></div>
+ <div class="fl t-hide m-hide" data-x="60" data-y="-100" data-r="-60" style="left:2%;top:80%;width:60px;height:60px"><svg><use href="#ball"/></svg></div>
+ <div class="fl t-hide m-hide" data-x="-40" data-y="-140" data-r="30" style="right:6%;bottom:2%;width:46px;height:70px;rotate:-20deg"><svg><use href="#shuttle"/></svg></div>
+ <div class="wrap">
+  <h2>Six shelves, <br>one little shop.</h2>
+  <p class="sub">Tap a category to ask what's on the shelf. We'll reply on WhatsApp.</p>
+  <div class="cats">
+   {cats.map((c) => (
+    <article class="cat">
+     <div class="ic" role="img" aria-label={c.label}>
+      {c.icons.map(([id, vb, ratio]) => (
+       <svg viewBox={vb} style={ratio ? `aspect-ratio:${ratio}` : undefined}><use href={`#${id}`}/></svg>
+      ))}
+     </div>
+     <h3>{c.name}</h3>
+     <p>{c.desc}</p>
+     <a href={wa(c.name)} target="_blank" rel="noopener">Ask about {c.name} <i>→</i></a>
+    </article>
+   ))}
+  </div>
+ </div>
+</section>
+
+<section id="about">
+ <div class="fl m-hide" data-x="-80" data-y="-90" data-r="30" style="left:-24px;bottom:10%;width:130px;height:34px;rotate:-12deg"><svg><use href="#ruler"/></svg></div>
+ <div class="fl t-hide m-hide" data-x="40" data-y="-70" data-r="-45" style="right:4%;top:6%;width:90px;height:90px"><svg><use href="#sticky"/></svg></div>
+ <div class="wrap">
+  <div>
+   <h2>A local stationery shop with a <u>bigger purpose.</u></h2>
+   <p class="sub" style="font-size:19px;color:#333;margin-top:26px">Pratik Books &amp; Stationers is a trusted stationery shop in Kanchi Bazar, Tikapur, serving students, families, schools, offices and local businesses with books, stationery, art supplies, sports materials and more.</p>
+  </div>
+  <div class="note"><p>From the first day of school to the last day of the fiscal year, we keep your desk stocked.</p><span class="hand">— Pratik Books &amp; Stationers</span></div>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="fl m-hide" data-x="60" data-y="-100" data-r="-35" style="right:3%;top:-20px;width:60px;height:60px;z-index:2"><svg><use href="#ball"/></svg></div>
+ <div class="wrap">
+  <div class="wa">
+   <div class="fl t-hide" data-x="-50" data-y="-60" data-r="30" style="right:6%;bottom:8%;width:150px;height:40px;rotate:-15deg;opacity:.9"><svg><use href="#pencil"/></svg></div>
+   <h2>We're just a message away.</h2>
+   <p>Need a specific item, bulk order, school supply, office material or something special? Message us on WhatsApp and we'll help you.</p>
+   <a class="btn" href={wa()} target="_blank" rel="noopener">Chat on WhatsApp <i>→</i></a>
+   <p class="num">+977 9848421318</p>
+  </div>
+ </div>
+</section>
+
+<section id="visit">
+ <div class="wrap visit">
+  <div>
+   <h2>Come say hello.</h2>
+   <address><strong>Pratik Books &amp; Stationers</strong><br>Kanchi Bazar, Tikapur, Kailali, Nepal<br><br>Phone: <a href="tel:+9779848421318">9848421318</a>, <a href="tel:+97791560311">091-560311</a><br>WhatsApp: <a href={wa()} target="_blank" rel="noopener">9848421318</a></address>
+   <div class="ctas v">
+    <a class="btn p" href={MAPS} target="_blank" rel="noopener">Get Directions <i>→</i></a>
+    <a class="btn s" href="tel:+9779848421318">Call Now</a>
+    <a class="btn s" href={wa()} target="_blank" rel="noopener">WhatsApp</a>
+   </div>
+  </div>
+  <div class="mapcard">
+   <svg viewBox="0 0 400 260" role="img" aria-label="Sketch map pointing to Kanchi Bazar, Tikapur"><rect width="400" height="260" fill="#FFF1A8"/><path d="M0 170C90 150 150 190 400 120M120 0c20 80 10 150 60 260M260 0c-10 70 40 120 20 260" fill="none" stroke="#162033" stroke-width="3" stroke-dasharray="8 8" opacity=".5"/><path d="M200 70a26 26 0 0126 26c0 22-26 52-26 52s-26-30-26-52a26 26 0 0126-26z" fill="#E25C5C" stroke="#162033" stroke-width="3"/><circle cx="200" cy="96" r="9" fill="#fff"/></svg>
+   <p>Kanchi Bazar, Tikapur ✏️</p>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap fg">
+  <div><div class="brand"><b>Pratik</b><span>BOOKS &amp; STATIONERS</span></div><p class="tag">Stationery for a brighter tomorrow.</p></div>
+  <div><h3>Find us</h3><ul><li>Kanchi Bazar, Tikapur, Kailali</li><li><a href="tel:+9779848421318">9848421318</a> · <a href="tel:+97791560311">091-560311</a></li><li>WhatsApp: <a href={wa()} target="_blank" rel="noopener">9848421318</a></li></ul></div>
+  <div><h3>Pages</h3><ul><li><a href="#home">Home</a></li><li><a href="#categories">Categories</a></li><li><a href="#about">About</a></li><li><a href="#visit">Visit</a></li><li><a href="#contact">Contact</a></li></ul></div>
+ </div>
+</footer>
+<a class="btn p fab" href={wa()} target="_blank" rel="noopener">WhatsApp</a>
+
+<script>
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  gsap.registerPlugin(ScrollTrigger);
+  const k = matchMedia('(max-width: 900px)').matches ? 0.5 : 1;
+  document.querySelectorAll<HTMLElement>('.fl').forEach((el, i) => {
+    const x = +el.dataset.x! * k, y = +el.dataset.y! * k, r = +el.dataset.r! * k;
+    gsap.fromTo(el,
+      { x: -x * 0.4, y: -y * 0.4, rotation: -r * 0.4, scale: 0.92, opacity: 0 },
+      { x, y, rotation: r, scale: 1, opacity: 1, ease: 'none',
+        scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.6 + (i % 4) * 0.3 } });
+    gsap.to(el, { opacity: 0, ease: 'none',
+      scrollTrigger: { trigger: el.parentElement, start: '70% top', end: 'bottom top', scrub: true } });
+  });
+}
+</script>
+
+<style is:global>
+:root{--bg:#FFFBEA;--y:#FFD84A;--y2:#FFC928;--y3:#FFF1A8;--ink:#171717;--navy:#162033;--mute:#6A6A6A;--line:rgba(22,32,51,.09);--safe-t:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font:400 17px/1.6 "DM Sans",system-ui,sans-serif;color:var(--ink);background:var(--bg);
+background-image:linear-gradient(90deg,transparent 71px,rgba(226,92,92,.22) 71px,rgba(226,92,92,.22) 73px,transparent 73px),repeating-linear-gradient(transparent 0 35px,var(--line) 35px 36px);overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom,0px)}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:800;line-height:1.02;color:var(--navy);letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px 0 clamp(28px,8vw,110px);position:relative;z-index:1}
+section{position:relative;padding:110px 0;overflow:hidden}
+.fl{position:absolute;pointer-events:none;will-change:transform;z-index:0;filter:drop-shadow(3px 6px 4px rgba(22,32,51,.16))}
+.fl svg{width:100%;height:100%}
+/* header */
+header{position:sticky;top:0;z-index:50;padding-top:var(--safe-t);background:rgba(255,251,234,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;max-width:1240px;margin:0 auto;padding:12px 28px}
+nav{display:flex;gap:26px;font-weight:500;font-size:15px}
+nav a:hover{text-decoration:underline wavy var(--y2);text-underline-offset:6px}
+.brand{text-align:center;font-family:Fraunces,serif;line-height:1}
+.brand b{display:block;font-size:30px;font-weight:800;color:var(--navy)}
+.brand span{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--mute)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;font-weight:700;font-size:16px;border:2px solid var(--navy);transition:transform .25s,box-shadow .25s,background .25s}
+.btn i{font-style:normal;transition:transform .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 0 var(--navy)}
+.btn:hover i{transform:translateX(5px)}
+.btn.p{background:var(--y);color:var(--navy)}
+.btn.s{background:transparent}
+.hd-cta{justify-self:end;padding:10px 18px;font-size:14px}
+/* hero */
+#home{min-height:calc(100svh - 70px);display:flex;align-items:center;padding:60px 0 90px}
+h1{font-size:clamp(46px,8.2vw,112px)}
+h1 em{font-style:normal;position:relative;white-space:nowrap}
+h1 em svg{position:absolute;left:0;bottom:-.14em;width:100%;height:.28em;overflow:visible}
+.lead{max-width:520px;margin:30px 0 36px;font-size:20px;color:#333}
+.hand{font-family:Caveat,cursive;font-size:26px;color:var(--navy);position:absolute;white-space:nowrap}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+/* categories */
+h2{font-size:clamp(36px,5.4vw,66px)}
+.sub{max-width:520px;margin-top:16px;color:var(--mute)}
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:34px 30px;margin-top:70px}
+.cat{grid-column:span 2;display:flex;flex-direction:column;padding:26px 24px 22px;background:#fff;border:2px solid var(--navy);border-radius:6px 22px 8px 18px;box-shadow:5px 6px 0 var(--y);transition:transform .35s,box-shadow .35s;position:relative}
+.cat:nth-child(2){margin-top:34px;transform:rotate(.8deg)}
+.cat:nth-child(3){transform:rotate(-.7deg)}
+.cat:nth-child(5){margin-top:30px;transform:rotate(-.6deg)}
+.cat:nth-child(6){transform:rotate(.6deg)}
+.cat:hover{transform:translateY(-4px) scale(1.01) rotate(0);box-shadow:7px 10px 0 var(--y2)}
+.cat .ic{height:110px;display:flex;align-items:flex-end;gap:2px;margin-bottom:14px;transition:transform .4s}
+.cat:hover .ic{transform:translate(4px,-4px) rotate(-2deg)}
+.cat .ic svg{height:100%;width:auto;aspect-ratio:1}
+/* let wide icons (pencil, brush) shrink instead of pushing the card past the screen */
+.cat{min-width:0}.cat .ic svg{min-width:0}
+.cat h3{font-size:30px}
+.cat p{margin:8px 0 18px;color:#444;font-size:16px}
+.cat a{margin-top:auto;font-weight:700;color:var(--navy);display:inline-flex;gap:8px;border-bottom:3px solid var(--y);align-self:flex-start}
+.cat a i{font-style:normal;transition:transform .25s}
+.cat a:hover i{transform:translateX(5px)}
+/* about */
+#about .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.note{background:var(--y3);padding:38px 34px;transform:rotate(2deg);box-shadow:6px 10px 0 rgba(22,32,51,.1);position:relative;font-size:18px}
+.note:before{content:"";position:absolute;top:-14px;left:50%;width:22px;height:22px;border-radius:50%;background:#E25C5C;box-shadow:0 4px 0 rgba(0,0,0,.18)}
+.note .hand{position:static;display:block;margin-top:16px}
+#about h2 u{text-decoration:none;background:linear-gradient(transparent 62%,var(--y) 62% 90%,transparent 90%)}
+/* whatsapp */
+.wa{background:var(--navy);color:#fff;border-radius:10px 40px 10px 40px;padding:70px clamp(28px,6vw,80px);position:relative;overflow:hidden}
+.wa h2{color:#fff}.wa p{max-width:520px;margin:18px 0 30px;color:#d9deea}
+.wa .btn{background:var(--y);color:var(--navy);border-color:var(--y)}
+.wa .num{margin-top:22px;font-weight:500;color:var(--y3)}
+/* visit */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+address{font-style:normal;margin:24px 0}
+address strong{font-family:Fraunces,serif;font-size:24px;color:var(--navy)}
+.ctas.v .btn{padding:12px 20px;font-size:15px}
+.mapcard{background:#fff;border:2px solid var(--navy);border-radius:20px 6px 20px 6px;padding:22px;box-shadow:6px 7px 0 var(--y);transform:rotate(-1deg)}
+.mapcard svg{width:100%;height:auto;display:block}
+.mapcard p{font-family:Caveat,cursive;font-size:24px;margin-top:8px;color:var(--navy)}
+/* footer */
+footer{background:var(--y);color:var(--navy);padding:60px 0 100px;position:relative;z-index:2}
+.fg{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:36px}
+footer .brand{text-align:left}
+footer .brand b{font-size:36px}footer .brand span{color:var(--navy)}
+footer h3{font-size:18px;margin-bottom:10px}
+footer li{list-style:none;padding:2px 0}footer ul{padding:0}
+footer a:hover{text-decoration:underline}
+.tag{font-family:Caveat,cursive;font-size:26px;margin-top:14px}
+.fab{display:none}
+@media (max-width:900px){
+ nav{display:none}.bar{grid-template-columns:1fr auto}.brand{text-align:left}
+ .cats{grid-template-columns:1fr 1fr}.cat{grid-column:auto;margin-top:0!important}
+ #about .wrap,.visit,.fg{grid-template-columns:1fr}
+ .t-hide{display:none}
+}
+@media (max-width:600px){
+ body{font-size:16px;background-image:linear-gradient(90deg,transparent 21px,rgba(226,92,92,.22) 21px,rgba(226,92,92,.22) 23px,transparent 23px),repeating-linear-gradient(transparent 0 31px,var(--line) 31px 32px)}
+ .wrap{padding:0 20px 0 38px}section{padding:76px 0}
+ .cats{grid-template-columns:1fr}.hd-cta{display:none}.bar{grid-template-columns:1fr}.brand{text-align:center}
+ .m-hide{display:none}.lead{font-size:18px}
+ .fab{display:inline-flex;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;box-shadow:0 5px 14px rgba(22,32,51,.3);background:var(--y);padding:12px 20px}
+ .hand.hero-h{display:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</body>
+</html>
