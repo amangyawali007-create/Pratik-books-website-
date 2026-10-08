@@ -1,6 +1,6 @@
 ---
 const SHOP = 'Pratik Books & Stationers';
-const WA_NUM = '9779848421318';
+const WA_NUM = '9779858421318';
 const MAPS = 'https://www.google.com/maps/search/?api=1&query=Pratik+Books+%26+Stationers+Kanchi+Bazar+Tikapur';
 const title = `${SHOP} | Stationery Shop in Tikapur`;
 const description = 'Pratik Books & Stationers in Kanchi Bazar, Tikapur offers books, school stationery, art supplies, office supplies, sports materials and more. Contact us directly through WhatsApp.';
@@ -31,7 +31,8 @@ const jsonLd = {
   name: SHOP,
   description: 'Books, stationery, art supplies, office supplies and sports materials in Tikapur.',
   ...(canonical && { url: canonical }),
-  telephone: ['+9779848421318', '+97791560311'],
+  telephone: ['+9779858421318', '+97791560311'],
+  email: 'pratikbooksandstationers@gmail.com',
   address: { '@type': 'PostalAddress', streetAddress: 'Kanchi Bazar', addressLocality: 'Tikapur', addressRegion: 'Kailali', addressCountry: 'NP' },
   areaServed: ['Tikapur', 'Kailali'],
   sameAs: [`https://wa.me/${WA_NUM}`],
@@ -151,7 +152,7 @@ const jsonLd = {
    <h2>We're just a message away.</h2>
    <p>Need a specific item, bulk order, school supply, office material or something special? Message us on WhatsApp and we'll help you.</p>
    <a class="btn" href={wa()} target="_blank" rel="noopener">Chat on WhatsApp <i>→</i></a>
-   <p class="num">+977 9848421318</p>
+   <p class="num">+977 9858421318</p>
   </div>
  </div>
 </section>
@@ -160,10 +161,10 @@ const jsonLd = {
  <div class="wrap visit">
   <div>
    <h2>Come say hello.</h2>
-   <address><strong>Pratik Books &amp; Stationers</strong><br>Kanchi Bazar, Tikapur, Kailali, Nepal<br><br>Phone: <a href="tel:+9779848421318">9848421318</a>, <a href="tel:+97791560311">091-560311</a><br>WhatsApp: <a href={wa()} target="_blank" rel="noopener">9848421318</a></address>
+   <address><strong>Pratik Books &amp; Stationers</strong><br>Kanchi Bazar, Tikapur, Kailali, Nepal<br><br>Phone: <a href="tel:+9779858421318">9858421318</a>, <a href="tel:+97791560311">091-560311</a><br>WhatsApp: <a href={wa()} target="_blank" rel="noopener">9858421318</a><br>Email: <a href="mailto:pratikbooksandstationers@gmail.com">pratikbooksandstationers@gmail.com</a></address>
    <div class="ctas v">
     <a class="btn p" href={MAPS} target="_blank" rel="noopener">Get Directions <i>→</i></a>
-    <a class="btn s" href="tel:+9779848421318">Call Now</a>
+    <a class="btn s" href="tel:+9779858421318">Call Now</a>
     <a class="btn s" href={wa()} target="_blank" rel="noopener">WhatsApp</a>
    </div>
   </div>
@@ -194,7 +195,7 @@ const jsonLd = {
 <footer>
  <div class="wrap fg">
   <div><div class="brand"><b>Pratik</b><span>BOOKS &amp; STATIONERS</span></div><p class="tag">Stationery for a brighter tomorrow.</p></div>
-  <div><h3>Find us</h3><ul><li>Kanchi Bazar, Tikapur, Kailali</li><li><a href="tel:+9779848421318">9848421318</a> · <a href="tel:+97791560311">091-560311</a></li><li>WhatsApp: <a href={wa()} target="_blank" rel="noopener">9848421318</a></li></ul></div>
+  <div><h3>Find us</h3><ul><li>Kanchi Bazar, Tikapur, Kailali</li><li><a href="tel:+9779858421318">9858421318</a> · <a href="tel:+97791560311">091-560311</a></li><li>WhatsApp: <a href={wa()} target="_blank" rel="noopener">9858421318</a></li><li><a href="mailto:pratikbooksandstationers@gmail.com">pratikbooksandstationers@gmail.com</a></li></ul></div>
   <div><h3>Pages</h3><ul><li><a href="#home">Home</a></li><li><a href="#categories">Categories</a></li><li><a href="#about">About</a></li><li><a href="#visit">Visit</a></li><li><a href="#contact">Contact</a></li></ul></div>
  </div>
 </footer>
