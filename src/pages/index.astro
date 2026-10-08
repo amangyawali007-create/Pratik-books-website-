@@ -168,7 +168,23 @@ const jsonLd = {
    </div>
   </div>
   <div class="mapcard">
-   <svg viewBox="0 0 400 260" role="img" aria-label="Sketch map pointing to Kanchi Bazar, Tikapur"><rect width="400" height="260" fill="#FFF1A8"/><path d="M0 170C90 150 150 190 400 120M120 0c20 80 10 150 60 260M260 0c-10 70 40 120 20 260" fill="none" stroke="#162033" stroke-width="3" stroke-dasharray="8 8" opacity=".5"/><path d="M200 70a26 26 0 0126 26c0 22-26 52-26 52s-26-30-26-52a26 26 0 0126-26z" fill="#E25C5C" stroke="#162033" stroke-width="3"/><circle cx="200" cy="96" r="9" fill="#fff"/></svg>
+   <svg viewBox="0 0 400 260" font-size="14" role="img" aria-label="Map: the shop is just east of Lamki–Tikapur Road, on the small lane beside Tikapur City Park, opposite Yamaha Showroom">
+    <defs><path id="mainroads" d="M-10 104C50 102 100 100 132 99S330 98 410 101"/><path id="sideroads" d="M207 100L204 270M207 174H249M249 100V200Q249 214 263 214H410M373 -10V270"/></defs>
+    <rect width="400" height="260" fill="#FFF1A8"/>
+    <path d="M145 22C180 20 230 24 262 21M198 0V95M182 22V92M257 0V22M378 0C365 40 340 70 333 96M80 0C82 40 78 70 80 100M20 0V60Q20 68 28 68M0 10H120M0 162C50 160 90 158 122 158M44 260C70 220 95 185 112 160M70 205H122M252 214V260" fill="none" stroke="#162033" stroke-width="2.5" stroke-linecap="round" opacity=".2"/>
+    <rect x="256" y="106" width="112" height="104" rx="4" fill="#A8DDB0" stroke="#162033" stroke-width="2"/>
+    <g fill="none" stroke-linecap="round"><use href="#sideroads" stroke="#162033" stroke-width="10"/><use href="#mainroads" stroke="#162033" stroke-width="14"/><path d="M132 -10V270" stroke="#162033" stroke-width="24"/><use href="#sideroads" stroke="#fff" stroke-width="6"/><use href="#mainroads" stroke="#fff" stroke-width="9"/><path d="M132 -10V270" stroke="#fff" stroke-width="19"/></g>
+    <circle cx="240" cy="48" r="4" fill="#162033"/><circle cx="91" cy="139" r="4" fill="#162033"/><circle cx="151" cy="226" r="3.5" fill="#162033"/><circle cx="84" cy="250" r="4" fill="#162033"/>
+    <text x="248" y="52">Yamaha Showroom</text>
+    <text x="84" y="143" text-anchor="end">EV Charging</text>
+    <text x="157" y="230" font-size="12">Bhattarai<tspan x="157" dy="12">Traders</tspan></text>
+    <text x="77" y="254" text-anchor="end">SBI Bank</text>
+    <text x="312" y="164" font-size="16" text-anchor="middle">Tikapur City Park</text>
+    <text transform="translate(137 252) rotate(-90)" font-size="13">Lamki – Tikapur Rd</text>
+    <ellipse cx="222" cy="130" rx="9" ry="3.5" fill="#162033" opacity=".25"/>
+    <path d="M222 76a20 20 0 0120 20c0 17-20 34-20 34s-20-17-20-34a20 20 0 0120-20z" fill="#E25C5C" stroke="#162033" stroke-width="2.5"/><circle cx="222" cy="96" r="7" fill="#fff"/>
+    <text x="248" y="86" font-size="20">Pratik Books</text>
+   </svg>
    <p>Kanchi Bazar, Tikapur ✏️</p>
   </div>
  </div>
@@ -277,6 +293,7 @@ address strong{font-family:Fraunces,serif;font-size:24px;color:var(--navy)}
 .ctas.v .btn{padding:12px 20px;font-size:15px}
 .mapcard{background:#fff;border:2px solid var(--navy);border-radius:20px 6px 20px 6px;padding:22px;box-shadow:6px 7px 0 var(--y);transform:rotate(-1deg)}
 .mapcard svg{width:100%;height:auto;display:block}
+.mapcard text{font-family:Caveat,cursive;font-weight:600;fill:var(--navy)}
 .mapcard p{font-family:Caveat,cursive;font-size:24px;margin-top:8px;color:var(--navy)}
 /* footer */
 footer{background:var(--y);color:var(--navy);padding:60px 0 100px;position:relative;z-index:2}
