@@ -2,6 +2,9 @@
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "pratik-books-website",
 	"compatibility_date": "2026-10-06",
+	"vars": {
+		"BUN_VERSION": "1.4.2"
+	},
 	"assets": {
 		"directory": "./dist"
 	}
